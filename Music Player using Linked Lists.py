@@ -3,7 +3,7 @@ import random
 import csv
 
 # This class will help in creating song object
-# It conatins information related to song such as id, name and duration
+# It contains information related to song such as id, name and duration
 class Song:
     def __init__(self, song_id, song_name, song_length):
         self.song_id = song_id
@@ -16,8 +16,8 @@ class Song:
                     'song_length':self.song_length})
         
 
-# Node for each of teh cong object that is going to be created. 
-# Each of these node will contain the song data nd reference to the next element
+# Node for each of the song object that is going to be created. 
+# Each of these node will contain the song data and reference to the next element
 class ListNode:
     def __init__(self, song:Song):
         self.song = song
@@ -141,7 +141,7 @@ class LinkedList:
     def sort_list(self):
     	# This means the whole list will be updated based on the song. 
     	# Please understand that the sorting should happen based on the song_name. 
-    	# You can use the sortted method that is available inbuilt. sorted() function
+    	# You can use the sorted method that is available inbuilt. sorted() function
     	# Once the list is updated return result to the function from where ot was called. 
         # Get the head of the linked list
         current = self.head
