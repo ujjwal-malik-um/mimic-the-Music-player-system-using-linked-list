@@ -3,7 +3,7 @@ import random
 import csv
 
 # This class will help in creating song object
-# It conatins information related to song such as id, name and duration
+# It contains information related to song such as id, name and duration
 class Song:
     def __init__(self, song_id, song_name, song_length):
         self.song_id = song_id
@@ -81,7 +81,7 @@ class LinkedList:
 
         # if song is found
         else:
-        	# Chckinhg if it is the last node
+        	# Checking if it is the last node
             if temp_node.next == None:
                 temp_node.next = node
             # If it is not the last node
@@ -117,11 +117,8 @@ class LinkedList:
         
         return True
     
-    # Deleting a song from the linekd list
+    # Deleting a song from the linked list
     def delete_song(self, song_name):
-    	# Look for the song that you want to delete using while loop
-    	# Once the song is found set it in temp variable and update the references
-    	# remove the links and update it accordingly
         current_node = self.head
         previous_node = None
     
@@ -139,33 +136,24 @@ class LinkedList:
         return False # the song was not found in the linked list
     
     def sort_list(self):
-    	# This means the whole list will be updated based on the song. 
-    	# Please understand that the sorting should happen based on the song_name. 
-    	# You can use the sortted method that is available inbuilt. sorted() function
-    	# Once the list is updated return result to the function from where ot was called. 
-        # Get the head of the linked list
-        current = self.head
-        if current is None:
+        if self.head_node is None:
             return
-    
-        # Create an empty dictionary to store the song names as keys and the nodes as values
-        dict_songs = {}
-    
-        # Traverse the linked list and store the song names and nodes in the dictionary
-        while current:
-            dict_songs[current.song] = current
-            current = current.next
-    
-        # Sort the song names in alphabetical order
-        sorted_songs = sorted(dict_songs.keys())
-    
-        # Re-link the nodes in the sorted order
-        self.head = dict_songs[sorted_songs[0]]
-        current = self.head
-        for i in range(1, len(sorted_songs)):
-            current.next = dict_songs[sorted_songs[i]]
-            current = current.next
-        current.next = None
+        
+        nodes_list = list()
+        
+        temp_node = self.head_node
+        
+        while(temp_node is not None):
+            nodes_list.append(ListNode(temp_node.song))
+            temp_node = temp_node.next
+            
+        nodes_list = sorted(nodes_list, key = lambda node : node.song.song_name, reverse=True)
+        self.head_node = None
+        
+        for node in nodes_list:
+            self.insert_at_start(node)
+        
+        return
         
     
     def shuffle_song(self):
@@ -244,7 +232,7 @@ class MusicPlayer:
             else:
                 print('No such playlist exists in the Music Player')
     
-    # Method ro delete a song from the playlist
+    # Method to delete a song from the playlist
     def delete_song_from_playlist(self, playlist_name, song_name):
         playlist = self.search_playlist_by_name(playlist_name)
         # Checking playlist exists
